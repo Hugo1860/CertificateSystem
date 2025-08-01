@@ -294,9 +294,11 @@ textarea.form-input.with-icon {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-width: 1070px;
+    gap: 0;
 }
 
 /* 添加外层包装器样式 */
@@ -306,6 +308,7 @@ textarea.form-input.with-icon {
     border: 10px solid #FF6634;
     background-color: white;
     width: 950px;
+    flex-shrink: 0;
 }
 
 /* 移除预览区域的最外层边框 */
@@ -842,12 +845,14 @@ textarea.form-input {
    模板选择器样式
    =========================================== */
 .template-selector {
-    margin-top: 16px;
+    margin-top: 20px;
     padding: 16px;
     background: var(--md-sys-color-surface);
     border-radius: 12px;
     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
                 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    width: 100%;
+    max-width: 950px;
 }
 
 .template-selector h3 {
