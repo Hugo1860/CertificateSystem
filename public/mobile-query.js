@@ -113,26 +113,58 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // 显示查询结果，添加创建时间显示
-            resultList.innerHTML = results.map(record => {
-                // 格式化创建时间
+            resultList.innerHTML = '';
+            results.forEach(record => {
                 const createTime = new Date(record.createTime);
                 const formattedTime = `${createTime.getFullYear()}-${String(createTime.getMonth() + 1).padStart(2, '0')}-${String(createTime.getDate()).padStart(2, '0')} ${String(createTime.getHours()).padStart(2, '0')}:${String(createTime.getMinutes()).padStart(2, '0')}`;
-                
-                return `
-                    <div class="certificate-card">
-                        <div class="title">${record.name || '未知姓名'} 的证书</div>
-                        <div class="info">课程：${record.courseName || '未知课程'}</div>
-                        <div class="info">证书编号：${record.id || '无编号'}</div>
-                        <div class="info">签发日期：${record.issueDate || '未知日期'}</div>
-                        <div class="info">培训机构：${record.institution || 'XXX医院'}</div>
-                        <div class="info" style="color: #666; font-size: 12px;">生成时间：${formattedTime}</div>
-                        <button class="download-btn" onclick="downloadCertificate('${record.id}')">
-                            <span class="material-icons">download</span>
-                            下载证书
-                        </button>
-                    </div>
-                `;
-            }).join('');
+
+                const card = document.createElement('div');
+                card.className = 'certificate-card';
+
+                const title = document.createElement('div');
+                title.className = 'title';
+                title.textContent = `${record.name || '未知姓名'} 的证书`;
+                card.appendChild(title);
+
+                const courseInfo = document.createElement('div');
+                courseInfo.className = 'info';
+                courseInfo.innerHTML = `<strong>课程：</strong>`;
+                courseInfo.append(document.createTextNode(record.courseName || '未知课程'));
+                card.appendChild(courseInfo);
+
+                const idInfo = document.createElement('div');
+                idInfo.className = 'info';
+                idInfo.innerHTML = `<strong>证书编号：</strong>`;
+                idInfo.append(document.createTextNode(record.id || '无编号'));
+                card.appendChild(idInfo);
+
+                const dateInfo = document.createElement('div');
+                dateInfo.className = 'info';
+                dateInfo.innerHTML = `<strong>签发日期：</strong>`;
+                dateInfo.append(document.createTextNode(record.issueDate || '未知日期'));
+                card.appendChild(dateInfo);
+
+                const institutionInfo = document.createElement('div');
+                institutionInfo.className = 'info';
+                institutionInfo.innerHTML = `<strong>培训机构：</strong>`;
+                institutionInfo.append(document.createTextNode(record.institution || 'XXX医院'));
+                card.appendChild(institutionInfo);
+
+                const timeInfo = document.createElement('div');
+                timeInfo.className = 'info';
+                timeInfo.style.color = '#666';
+                timeInfo.style.fontSize = '12px';
+                timeInfo.textContent = `生成时间：${formattedTime}`;
+                card.appendChild(timeInfo);
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.onclick = () => downloadCertificate(record.id);
+                downloadBtn.innerHTML = `<span class="material-icons">download</span> 下载证书`;
+                card.appendChild(downloadBtn);
+
+                resultList.appendChild(card);
+            });
 
         } catch (error) {
             console.error('查询证书时出错:', error);
@@ -168,51 +200,60 @@ document.addEventListener('DOMContentLoaded', function() {
             wrapperElement.style.backgroundColor = 'white';
             wrapperElement.style.width = '950px';
 
-            // 完全复制 certificate.html 中的证书结构和样式，使用记录中的信息
-            wrapperElement.innerHTML = `
-                <div class="certificate" style="
-                    background-color: white;
-                    border: 2px solid #FF6634;
-                    padding: 20px;
-                    width: 100%;
-                    position: relative;
-                    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-                ">
-                    <div class="certificate-header" style="text-align: center; margin-bottom: 40px;">
-                        <div class="logo" style="text-align: left; margin-bottom: 20px; padding-left: 20px;">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiIGZpbGw9IiM1RjYzNjgiPjxwYXRoIGQ9Ik00NzkuNzgyLTI0MHEtMTQuNzgzIDAtMjkuNTY1LTUuNXQtMjcuMjE3LTE4LjVMMjA3LTQ4MHEtMTQtMTQtMTkuNS0yOXQtNS41LTMxcTAtMTYgNS41LTMxdDE5LjUtMjlsMjE2LTIxNnExMi0xMiAyNy4yMTctMTcuNXQyOS41NjUtNS41cTE0Ljc4MyAwIDI5LjU2NSA1LjV0MjcuMjE3IDE3LjVsMjE2IDIxNnExNSAxNCAyMC41IDI5dDUuNSAzMXEwIDE2LTUuNSAzMXQtMjAuNSAyOUw1MzYuNTY1LTI2NHEtMTIuNDM1IDEzLTI3LjIxNyAxOC41dC0yOS41NjUgNS41Wm0wLTYwbDIxNi0yMTZxMy0zIDMtN3QtMy03TDQ3OS43ODItNzQ2cS0zLTMtNy0zdC03IDNMMjQ5LTUzMHEtMyAzLTMgN3QzIDdsMjE2Ljc4MiAyMTZxMyAzIDcgM3Q3LTNabTAtMjIwWiIvPjwvc3ZnPg==" alt="Logo" style="height: 40px; width: auto; display: block; filter: brightness(0.4);">
-                        </div>
-                        <h1 class="en-title" style="color: #FF6634; font-size: 24px; margin-bottom: 10px;">CERTIFICATE OF COURSE COMPLETION</h1>
-                        <h1 class="cn-title" style="color: #FF6634; font-size: 36px; font-weight: bold; margin-bottom: 40px;">课程毕业证书</h1>
-                    </div>
-                    
-                    <div class="certificate-content" style="text-align: center; margin: 65px 0;">
-                        <div class="student-name" style="font-size: 24px; margin-bottom: 30px; position: relative; display: inline-block; color: #202124;">
-                            ${record.name}
-                            <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 1px; background-color: #000;"></div>
-                        </div>
-                        <div class="completion-text" style="font-size: 18px; color: #DAA520; margin-bottom: 20px;">${record.certificateType}</div>
-                        <div class="course-name" style="font-size: 24px; font-weight: bold; margin-bottom: 30px; color: #202124;">${record.courseName}</div>
-                        <div class="award-text" style="font-size: 18px; color: #DAA520; margin-top: 40px;">特授此证书</div>
-                    </div>
+            // 安全地构建证书HTML
+            const certificateDiv = document.createElement('div');
+            certificateDiv.className = 'certificate';
+            certificateDiv.style.cssText = `
+                background-color: white;
+                border: 2px solid #FF6634;
+                padding: 20px;
+                width: 100%;
+                position: relative;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            `;
 
-                    <div class="certificate-footer" style="display: flex; justify-content: space-between; margin-top: 60px; padding: 0 20px;">
-                        <div class="issue-date" style="font-size: 14px; color: #202124;">
-                            <span>签发日期：</span>
-                            <span class="date">${record.issueDate}</span>
-                        </div>
-                        <div class="certificate-number" style="font-size: 14px; color: #202124;">
-                            <span>证书编号：</span>
-                            <span class="number">${record.id}</span>
-                        </div>
-                        <div class="institution" style="text-align: right; color: #202124;">
-                            <span>Institution</span>
-                            <span class="cn-text">${record.institution}</span>
-                        </div>
+            certificateDiv.innerHTML = `
+                <div class="certificate-header" style="text-align: center; margin-bottom: 40px;">
+                    <div class="logo" style="text-align: left; margin-bottom: 20px; padding-left: 20px;">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiIGZpbGw9IiM1RjYzNjgiPjxwYXRoIGQ9Ik00NzkuNzgyLTI0MHEtMTQuNzgzIDAtMjkuNTY1LTUuNXQtMjcuMjE3LTE4LjVMMjA3LTQ4MHEtMTQtMTQtMTkuNS0yOXQtNS41LTMxcTAtMTYgNS41LTMxdDE5LjUtMjlsMjE2LTIxNnExMi0xMiAyNy4yMTctMTcuNXQyOS41NjUtNS41cTE0Ljc4MyAwIDI5LjU2NSA1LjV0MjcuMjE3IDE3LjVsMjE2IDIxNnExNSAxNCAyMC41IDI5dDUuNSAzMXEwIDE2LTUuNSAzMXQtMjAuNSAyOUw1MzYuNTY1LTI2NHEtMTIuNDM1IDEzLTI3LjIxNyAxOC41dC0yOS41NjUgNS41Wm0wLTYwbDIxNi0yMTZxMy0zIDMtN3QtMy03TDQ3OS43ODItNzQ2cS0zLTMtNy0zdC03IDNMMjQ5LTUzMHEtMyAzLTMgN3QzIDdsMjE2Ljc4MiAyMTZxMyAzIDcgM3Q3LTNabTAtMjIwWiIvPjwvc3ZnPg==" alt="Logo" style="height: 40px; width: auto; display: block; filter: brightness(0.4);">
+                    </div>
+                    <h1 class="en-title" style="color: #FF6634; font-size: 24px; margin-bottom: 10px;">CERTIFICATE OF COURSE COMPLETION</h1>
+                    <h1 class="cn-title" style="color: #FF6634; font-size: 36px; font-weight: bold; margin-bottom: 40px;">课程毕业证书</h1>
+                </div>
+
+                <div class="certificate-content" style="text-align: center; margin: 65px 0;">
+                    <div class="student-name" style="font-size: 24px; margin-bottom: 30px; position: relative; display: inline-block; color: #202124;">
+                        <div style="position: absolute; bottom: -10px; left: 0; width: 100%; height: 1px; background-color: #000;"></div>
+                    </div>
+                    <div class="completion-text" style="font-size: 18px; color: #DAA520; margin-bottom: 20px;"></div>
+                    <div class="course-name" style="font-size: 24px; font-weight: bold; margin-bottom: 30px; color: #202124;"></div>
+                    <div class="award-text" style="font-size: 18px; color: #DAA520; margin-top: 40px;">特授此证书</div>
+                </div>
+
+                <div class="certificate-footer" style="display: flex; justify-content: space-between; margin-top: 60px; padding: 0 20px;">
+                    <div class="issue-date" style="font-size: 14px; color: #202124;">
+                        <span>签发日期：</span>
+                        <span class="date"></span>
+                    </div>
+                    <div class="certificate-number" style="font-size: 14px; color: #202124;">
+                        <span>证书编号：</span>
+                        <span class="number"></span>
+                    </div>
+                    <div class="institution" style="text-align: right; color: #202124;">
+                        <span>Institution</span>
+                        <span class="cn-text"></span>
                     </div>
                 </div>
             `;
 
+            certificateDiv.querySelector('.student-name').prepend(document.createTextNode(record.name));
+            certificateDiv.querySelector('.completion-text').textContent = record.certificateType;
+            certificateDiv.querySelector('.course-name').textContent = record.courseName;
+            certificateDiv.querySelector('.issue-date .date').textContent = record.issueDate;
+            certificateDiv.querySelector('.certificate-number .number').textContent = record.id;
+            certificateDiv.querySelector('.institution .cn-text').textContent = record.institution;
+
+            wrapperElement.appendChild(certificateDiv);
             certificateContainer.innerHTML = '';
             certificateContainer.appendChild(wrapperElement);
 
