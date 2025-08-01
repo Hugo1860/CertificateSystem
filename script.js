@@ -362,6 +362,123 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    // ===========================================
+    // 模板切换功能
+    // ===========================================
+    
+    // 当前选择的模板
+    let currentTemplate = 'classic';
+    
+    // 初始化模板切换功能
+    initTemplateSelector();
+    
+    function initTemplateSelector() {
+        const templateThumbnails = document.querySelectorAll('.template-thumbnail');
+        const certificatePreview = document.getElementById('certificatePreview');
+        
+        templateThumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const templateType = this.getAttribute('data-template');
+                switchTemplate(templateType);
+                
+                // 更新激活状态
+                templateThumbnails.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 保存用户选择的模板
+                localStorage.setItem('selectedTemplate', templateType);
+            });
+        });
+        
+        // 恢复用户上次选择的模板
+        const savedTemplate = localStorage.getItem('selectedTemplate');
+        if (savedTemplate && savedTemplate !== 'classic') {
+            const savedThumbnail = document.querySelector(`[data-template="${savedTemplate}"]`);
+            if (savedThumbnail) {
+                savedThumbnail.click();
+            }
+        }
+    }
+    
+    function switchTemplate(templateType) {
+        const certificate = document.getElementById('certificatePreview');
+        if (!certificate) return;
+        
+        // 移除所有模板类
+        certificate.className = certificate.className.replace(/template-\w+/g, '');
+        
+        // 添加新的模板类
+        certificate.classList.add(`template-${templateType}`);
+        
+        // 更新当前模板
+        currentTemplate = templateType;
+        
+        // 根据模板类型调整特定样式
+        adjustTemplateSpecificStyles(templateType);
+        
+        // 重新应用用户的颜色设置
+        applyColorSettings();
+    }
+    
+    function adjustTemplateSpecificStyles(templateType) {
+        const certificate = document.getElementById('certificatePreview');
+        
+        switch(templateType) {
+            case 'modern':
+                // 现代模板的特殊调整
+                break;
+            case 'elegant':
+                // 优雅模板的特殊调整
+                break;
+            case 'professional':
+                // 专业模板的特殊调整
+                break;
+            case 'minimalist':
+                // 简约模板的特殊调整
+                break;
+            case 'classic':
+            default:
+                // 经典模板（默认）
+                break;
+        }
+    }
+    
+    function applyColorSettings() {
+        const borderColor = document.getElementById('borderColor').value;
+        const fontColor = document.getElementById('fontColor').value;
+        const certificate = document.getElementById('certificatePreview');
+        
+        if (!certificate) return;
+        
+        // 根据不同模板应用颜色
+        switch(currentTemplate) {
+            case 'modern':
+                // 现代模板保持渐变背景，但调整边框
+                certificate.style.border = `3px solid ${borderColor}`;
+                break;
+            case 'elegant':
+                // 优雅模板使用双线边框
+                certificate.style.border = `3px double ${borderColor}`;
+                break;
+            case 'professional':
+                certificate.style.border = `2px solid ${borderColor}`;
+                // 更新顶部条纹颜色
+                const professionalBefore = certificate.querySelector('::before');
+                break;
+            case 'minimalist':
+                certificate.style.border = `1px solid ${borderColor}`;
+                break;
+            case 'classic':
+            default:
+                certificate.style.border = `2px solid ${borderColor}`;
+                break;
+        }
+    }
+    
+    // 监听颜色变化
+    document.getElementById('borderColor').addEventListener('change', applyColorSettings);
+    document.getElementById('fontColor').addEventListener('change', applyColorSettings);
+
 }); 
 
 // 在生成证书的代码中添加保存记录的函数

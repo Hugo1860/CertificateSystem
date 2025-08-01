@@ -836,4 +836,348 @@ textarea.form-input {
 
 .input-container .form-input {
     flex: 1;
+}
+
+/* ===========================================
+   模板选择器样式
+   =========================================== */
+.template-selector {
+    margin-top: 24px;
+    padding: 20px;
+    background: var(--md-sys-color-surface);
+    border-radius: 16px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+                0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+}
+
+.template-selector h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.template-thumbnails {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.template-thumbnail {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    padding: 8px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.template-thumbnail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.template-thumbnail.active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.template-thumbnail.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--md-sys-color-primary);
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.thumbnail-preview {
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid var(--md-sys-color-outline);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    font-size: 8px;
+    line-height: 1.2;
+}
+
+.template-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--md-sys-color-on-surface);
+}
+
+.thumb-header {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.thumb-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.thumb-name, .thumb-course {
+    text-align: center;
+    opacity: 0.7;
+}
+
+/* ===========================================
+   证书模板样式
+   =========================================== */
+
+/* 经典模板 - 保持原有样式 */
+.template-classic {
+    /* 使用现有的证书样式 */
+}
+
+.template-classic-thumb {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    color: #333;
+    border-color: #FF6634;
+}
+
+/* 现代模板 */
+.template-modern {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.template-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="30" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    pointer-events: none;
+}
+
+.template-modern .certificate-header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.template-modern .cn-title {
+    color: white;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.template-modern .student-name {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 25px 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.template-modern .completion-text,
+.template-modern .course-name,
+.template-modern .award-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.template-modern-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* 优雅模板 */
+.template-elegant {
+    background: linear-gradient(45deg, #f9f9f9 0%, #ffffff 100%);
+    border: 3px double #d4af37;
+    position: relative;
+}
+
+.template-elegant::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #d4af37;
+    pointer-events: none;
+}
+
+.template-elegant .certificate-header {
+    text-align: center;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.template-elegant .cn-title {
+    color: #8b4513;
+    font-family: "Times New Roman", serif;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.template-elegant .student-name {
+    font-family: "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #8b4513;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+.template-elegant .completion-text,
+.template-elegant .course-name,
+.template-elegant .award-text {
+    color: #654321;
+    font-family: "Times New Roman", serif;
+}
+
+.template-elegant-thumb {
+    background: linear-gradient(45deg, #f9f9f9 0%, #ffffff 100%);
+    border-color: #d4af37;
+    color: #8b4513;
+}
+
+/* 专业模板 */
+.template-professional {
+    background: #ffffff;
+    border: 2px solid #2c3e50;
+    position: relative;
+}
+
+.template-professional::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #2c3e50 0%, #3498db 50%, #2c3e50 100%);
+}
+
+.template-professional .certificate-header {
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+    padding: 25px 0 15px;
+    margin-bottom: 20px;
+}
+
+.template-professional .cn-title {
+    color: #2c3e50;
+    font-family: "Arial", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.template-professional .student-name {
+    font-family: "Arial", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+.template-professional .completion-text,
+.template-professional .course-name,
+.template-professional .award-text {
+    color: #34495e;
+    font-family: "Arial", sans-serif;
+    font-weight: 400;
+}
+
+.template-professional-thumb {
+    background: #ffffff;
+    border-color: #2c3e50;
+    color: #2c3e50;
+    position: relative;
+}
+
+.template-professional-thumb::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2c3e50 0%, #3498db 50%, #2c3e50 100%);
+}
+
+/* 简约模板 */
+.template-minimalist {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.template-minimalist .certificate-header,
+.template-minimalist .certificate-content,
+.template-minimalist .certificate-footer {
+    text-align: center;
+}
+
+.template-minimalist .certificate-header {
+    border-bottom: none;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.template-minimalist .cn-title {
+    color: #333333;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.template-minimalist .student-name {
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 26px;
+    font-weight: 200;
+    color: #333333;
+    margin: 25px 0;
+    letter-spacing: 1px;
+}
+
+.template-minimalist .completion-text,
+.template-minimalist .course-name,
+.template-minimalist .award-text {
+    color: #666666;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.template-minimalist .certificate-footer {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+    margin-top: 25px;
+}
+
+.template-minimalist-thumb {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    color: #333333;
 } 
