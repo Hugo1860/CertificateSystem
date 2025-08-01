@@ -301,27 +301,25 @@ textarea.form-input.with-icon {
     gap: 0;
 }
 
-/* 添加外层包装器样式 */
+/* 统一外层包装器样式 */
 .certificate-wrapper {
     position: relative;
-    padding: 18px;
-    border: 10px solid #FF6634;
-    background-color: white;
     width: 950px;
+    height: 650px;
     flex-shrink: 0;
-}
-
-/* 移除预览区域的最外层边框 */
-.certificate-wrapper::before {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 更新证书样式 */
 .certificate {
     background-color: white;
-    border: 2px solid #FF6634;
-    padding: 20px;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
@@ -957,6 +955,9 @@ textarea.form-input {
     border: 3px double #FF6634;
     padding: 20px;
     position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
 }
 
 .template-classic::before {
@@ -995,6 +996,9 @@ textarea.form-input {
     position: relative;
     border: 3px double #00A99D;
     padding: 20px;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
 }
 
 /* 装饰性边框和背景纹理 */
@@ -1177,6 +1181,9 @@ textarea.form-input {
     border: 3px double #d4af37;
     padding: 20px;
     position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
 }
 
 .template-elegant::before {
@@ -1244,6 +1251,9 @@ textarea.form-input {
     border: 3px double #2c3e50;
     padding: 20px;
     position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
 }
 
 .template-professional::before {
@@ -1324,6 +1334,9 @@ textarea.form-input {
     border: 3px double #e0e0e0;
     padding: 20px;
     position: relative;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
 }
 
 .template-minimalist::before {
