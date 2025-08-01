@@ -450,29 +450,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!certificate) return;
         
-        // 根据不同模板应用颜色
-        switch(currentTemplate) {
-            case 'modern':
-                // 现代模板保持渐变背景，但调整边框
-                certificate.style.border = `3px solid ${borderColor}`;
-                break;
-            case 'elegant':
-                // 优雅模板使用双线边框
-                certificate.style.border = `3px double ${borderColor}`;
-                break;
-            case 'professional':
-                certificate.style.border = `2px solid ${borderColor}`;
-                // 更新顶部条纹颜色
-                const professionalBefore = certificate.querySelector('::before');
-                break;
-            case 'minimalist':
-                certificate.style.border = `1px solid ${borderColor}`;
-                break;
-            case 'classic':
-            default:
-                certificate.style.border = `2px solid ${borderColor}`;
-                break;
+        // 所有模板都使用相同的双边框样式
+        certificate.style.border = `3px double ${borderColor}`;
+        
+        // 更新内边框颜色
+        const style = document.createElement('style');
+        style.textContent = `
+            .template-${currentTemplate}::before {
+                border-color: ${borderColor} !important;
+            }
+        `;
+        
+        // 移除之前的样式
+        const existingStyle = document.querySelector('#dynamic-border-style');
+        if (existingStyle) {
+            existingStyle.remove();
         }
+        
+        style.id = 'dynamic-border-style';
+        document.head.appendChild(style);
     }
     
     // 监听颜色变化

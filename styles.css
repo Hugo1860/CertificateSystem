@@ -952,15 +952,39 @@ textarea.form-input {
    证书模板样式
    =========================================== */
 
-/* 经典模板 - 保持原有样式 */
+/* 经典模板 - 统一尺寸样式 */
 .template-classic {
-    /* 使用现有的证书样式 */
+    border: 3px double #FF6634;
+    padding: 20px;
+    position: relative;
+}
+
+.template-classic::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #FF6634;
+    pointer-events: none;
 }
 
 .template-classic-thumb {
     background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
     color: #333;
-    border-color: #FF6634;
+    border: 2px solid #FF6634;
+    position: relative;
+}
+
+.template-classic-thumb::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid #FF6634;
 }
 
 /* 现代模板 - 中式正式证书设计 */
@@ -969,8 +993,8 @@ textarea.form-input {
     color: #000000;
     text-align: center;
     position: relative;
-    border: 20px solid #00A99D;
-    padding: 30px;
+    border: 3px double #00A99D;
+    padding: 20px;
 }
 
 /* 装饰性边框和背景纹理 */
@@ -981,7 +1005,7 @@ textarea.form-input {
     left: 15px;
     right: 15px;
     bottom: 15px;
-    border: 3px double #DAA520;
+    border: 1px solid #DAA520;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M50 20 Q60 30 50 40 Q40 30 50 20 M20 50 Q30 60 40 50 Q30 40 20 50 M80 50 Q90 60 80 70 Q70 60 80 50 M50 80 Q60 90 50 100 Q40 90 50 80" fill="%23DAA520"/></svg>') repeat;
     pointer-events: none;
 }
@@ -1151,6 +1175,7 @@ textarea.form-input {
 .template-elegant {
     background: linear-gradient(45deg, #f9f9f9 0%, #ffffff 100%);
     border: 3px double #d4af37;
+    padding: 20px;
     position: relative;
 }
 
@@ -1198,31 +1223,55 @@ textarea.form-input {
 
 .template-elegant-thumb {
     background: linear-gradient(45deg, #f9f9f9 0%, #ffffff 100%);
-    border-color: #d4af37;
+    border: 2px solid #d4af37;
     color: #8b4513;
+    position: relative;
+}
+
+.template-elegant-thumb::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid #d4af37;
 }
 
 /* 专业模板 */
 .template-professional {
     background: #ffffff;
-    border: 2px solid #2c3e50;
+    border: 3px double #2c3e50;
+    padding: 20px;
     position: relative;
 }
 
 .template-professional::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #2c3e50;
+    pointer-events: none;
+}
+
+.template-professional::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
     height: 8px;
     background: linear-gradient(90deg, #2c3e50 0%, #3498db 50%, #2c3e50 100%);
+    z-index: 1;
 }
 
 .template-professional .certificate-header {
     text-align: left;
     border-bottom: 1px solid #ecf0f1;
-    padding: 25px 0 15px;
+    padding: 35px 0 15px;
     margin-bottom: 20px;
 }
 
@@ -1254,7 +1303,7 @@ textarea.form-input {
 
 .template-professional-thumb {
     background: #ffffff;
-    border-color: #2c3e50;
+    border: 2px solid #2c3e50;
     color: #2c3e50;
     position: relative;
 }
@@ -1262,18 +1311,30 @@ textarea.form-input {
 .template-professional-thumb::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #2c3e50 0%, #3498db 50%, #2c3e50 100%);
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid #2c3e50;
 }
 
 /* 简约模板 */
 .template-minimalist {
     background: #ffffff;
-    border: 1px solid #e0e0e0;
+    border: 3px double #e0e0e0;
+    padding: 20px;
     position: relative;
+}
+
+.template-minimalist::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 1px solid #e0e0e0;
+    pointer-events: none;
 }
 
 .template-minimalist .certificate-header,
@@ -1322,6 +1383,17 @@ textarea.form-input {
 
 .template-minimalist-thumb {
     background: #ffffff;
-    border-color: #e0e0e0;
+    border: 2px solid #e0e0e0;
     color: #333333;
+    position: relative;
+}
+
+.template-minimalist-thumb::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid #e0e0e0;
 } 
