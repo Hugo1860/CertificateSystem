@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://html2canvas.hertzen.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>电子证书管理系统</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="system-container">
+        <div class="system-title">
+            <h1>电子证书管理系统</h1>
+
+        </div>
+        <!-- 左侧表单区域 -->
+        <div class="form-section">
+            <h2>证书信息录入</h2>
+            <div class="input-group required">
+                <label for="studentNames">
+                    <span class="material-icons">person</span>
+                    学员姓名
+                </label>
+                <div class="input-container">
+                    <textarea id="studentNames" class="form-input" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="certificateTitle">
+                    <span class="material-icons">workspace_premium</span>
+                    证书名称
+                </label>
+                <div class="input-container">
+                    <textarea id="certificateTitle" class="form-input" rows="2"></textarea>
+                    <div class="font-size-control">
+                        <button type="button" class="font-size-btn" data-target="certificateTitlePreview" data-action="decrease">
+                            <span class="material-icons">text_decrease</span>
+                        </button>
+                        <button type="button" class="font-size-btn" data-target="certificateTitlePreview" data-action="increase">
+                            <span class="material-icons">text_increase</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="courseName">
+                    <span class="material-icons">school</span>
+                    课程名称
+                </label>
+                <div class="input-container">
+                    <input type="text" id="courseName" class="form-input">
+                    <div class="font-size-control">
+                        <button type="button" class="font-size-btn" data-target="courseNamePreview" data-action="decrease">
+                            <span class="material-icons">text_decrease</span>
+                        </button>
+                        <button type="button" class="font-size-btn" data-target="courseNamePreview" data-action="increase">
+                            <span class="material-icons">text_increase</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="certificateType">
+                    <span class="material-icons">description</span>
+                    证书类型
+                </label>
+                <div class="input-container">
+                    <input type="text" id="certificateType" class="form-input">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="certificateNumber">
+                    <span class="material-icons">tag</span>
+                    证书编号
+                </label>
+                <div class="input-container">
+                    <input type="text" id="certificateNumber" class="form-input">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="certificateDate">
+                    <span class="material-icons">calendar_today</span>
+                    签发日期
+                </label>
+                <input type="date" id="certificateDate" class="form-input with-icon">
+            </div>
+            <div class="input-group">
+                <label for="institution">
+                    <span class="material-icons">business</span>
+                    培训机构
+                </label>
+                <div class="input-container">
+                    <input type="text" id="institution" class="form-input">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="logoUpload">
+                    <span class="material-icons">image</span>
+                    Logo 上传
+                </label>
+                <div class="input-container">
+                    <input type="file" id="logoUpload" class="form-input" accept="image/*">
+                    <div class="logo-preview" id="logoPreviewContainer" style="display: none;">
+                        <img id="logoPreview" alt="Logo Preview">
+                        <button type="button" class="remove-logo" id="removeLogo">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="color-settings">
+                <div class="color-group">
+                    <label for="borderColor">边框颜色</label>
+                    <input type="color" id="borderColor" value="#FF6634">
+                </div>
+                <div class="color-group">
+                    <label for="fontColor">字体颜色</label>
+                    <input type="color" id="fontColor" value="#FF6634">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="preview-btn" id="generateBtn">
+                    <span class="material-icons">note_add</span>
+                    生成证书
+                </button>
+                <button class="record-btn" id="recordBtn" onclick="window.open('record.html', '_blank')">
+                    <span class="material-icons">history</span>
+                    生成记录
+                </button>
+                <button class="mobile-query-btn" onclick="window.open('mobile-query.html', '_blank')">
+                    <span class="material-icons">phone_iphone</span>
+                    移动端查询
+                </button>
+            </div>
+        </div>
+
+        <!-- 右侧预览区域 -->
+        <div class="preview-section">
+            <div class="certificate-wrapper">
+                <div class="certificate" style="border: 2px solid #FF6634; padding: 20px;">
+                    <div class="certificate-header">
+                        <div class="logo">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiIGZpbGw9IiM1RjYzNjgiPjxwYXRoIGQ9Ik00NzkuNzgyLTI0MHEtMTQuNzgzIDAtMjkuNTY1LTUuNXQtMjcuMjE3LTE4LjVMMjA3LTQ4MHEtMTQtMTQtMTkuNS0yOXQtNS41LTMxcTAtMTYgNS41LTMxdDE5LjUtMjlsMjE2LTIxNnExMi0xMiAyNy4yMTctMTcuNXQyOS41NjUtNS41cTE0Ljc4MyAwIDI5LjU2NSA1LjV0MjcuMjE3IDE3LjVsMjE2IDIxNnExNSAxNCAyMC41IDI5dDUuNSAzMXEwIDE2LTUuNSAzMXQtMjAuNSAyOUw1MzYuNTY1LTI2NHEtMTIuNDM1IDEzLTI3LjIxNyAxOC41dC0yOS41NjUgNS41Wm0wLTYwbDIxNi0yMTZxMy0zIDMtN3QtMy03TDQ3OS43ODItNzQ2cS0zLTMtNy0zdC03IDNMMjQ5LTUzMHEtMyAzLTMgN3QzIDdsMjE2Ljc4MiAyMTZxMyAzIDcgM3Q3LTNabTAtMjIwWiIvPjwvc3ZnPg==" alt="AI医护">
+                        </div>
+                        <h1 class="cn-title" id="certificateTitlePreview">课程毕业证书</h1>
+                    </div>
+                    
+                    <div class="certificate-content">
+                        <div class="student-name">张三</div>
+                        <div class="completion-text">完整学习了云端科教</div>
+                        <div class="course-name" id="courseNamePreview">AHA心肺复苏指南中文学习</div>
+                        <div class="award-text">特授此证书</div>
+                    </div>
+
+                    <div class="certificate-footer">
+                        <div class="issue-date">
+                            <span>签发日期：</span>
+                            <span class="date"></span>
+                        </div>
+                        <div class="certificate-number">
+                            <span>证书编号：</span>
+                            <span class="number">XXYY-20250010020</span>
+                        </div>
+                        <div class="institution">
+                            <span>Institution</span>
+                            <span class="cn-text">XXX医院</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" 
+        integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" 
+        integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

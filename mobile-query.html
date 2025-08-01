@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书查询</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #F8F9FA;
+            color: #202124;
+            line-height: 1.5;
+            padding-top: 80px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .search-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 12px 16px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .search-header h1 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1A73E8;
+            margin: 0;
+        }
+
+        .search-header h2 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5F6368;
+            margin: 4px 0 0;
+        }
+
+        .search-form {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #5F6368;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 44px;
+            padding: 0 16px;
+            border: 1px solid #DADCE0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #1A73E8;
+            box-shadow: 0 0 0 1px #1A73E8;
+        }
+
+        .search-btn {
+            width: 100%;
+            height: 44px;
+            background: #1A73E8;
+            color: white;
+            border: none;
+            border-radius: 22px;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .search-btn:active {
+            background: #1557B0;
+        }
+
+        .result-list {
+            margin-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .certificate-card {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .certificate-card .title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #1A73E8;
+        }
+
+        .certificate-card .info {
+            font-size: 14px;
+            color: #5F6368;
+            margin-bottom: 4px;
+        }
+
+        .no-result {
+            text-align: center;
+            padding: 40px 20px;
+            color: #5F6368;
+            font-size: 14px;
+            background: white;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        #certificateContainer {
+            position: fixed;
+            left: -9999px;
+            top: -9999px;
+        }
+
+        /* 适配 iPhone 刘海屏 */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            body {
+                padding-top: calc(80px + env(safe-area-inset-top));
+            }
+            .search-header {
+                padding-top: calc(12px + env(safe-area-inset-top));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-header">
+        <h1>AI 医护学习系统</h1>
+        <h2>证书查询</h2>
+    </div>
+
+    <div class="search-container">
+        <div class="search-form">
+            <div class="input-group">
+                <label>
+                    <span class="material-icons">person</span>
+                    姓名
+                </label>
+                <input type="text" id="nameInput" placeholder="请输入姓名">
+            </div>
+
+            <div class="input-group">
+                <label>
+                    <span class="material-icons">school</span>
+                    课程名称
+                </label>
+                <input type="text" id="courseInput" placeholder="请输入课程名称">
+            </div>
+
+            <button class="search-btn" id="searchBtn">
+                <span class="material-icons">search</span>
+                搜索证书
+            </button>
+        </div>
+
+        <div class="result-list" id="resultList">
+            <!-- 搜索结果将在这里显示 -->
+        </div>
+    </div>
+
+    <div id="certificateContainer"></div>
+
+    <script src="mobile-query.js"></script>
+</body>
+</html> 

@@ -1,0 +1,839 @@
+:root {
+    /* Material Design 3 颜色系统 - 更新为中性色调 */
+    --md-sys-color-primary: #1A73E8;  /* Google Blue */
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #E8F0FE;
+    --md-sys-color-on-primary-container: #0D3C84;
+    --md-sys-color-surface: #FFFFFF;
+    --md-sys-color-on-surface: #202124;
+    --md-sys-color-surface-container: #F8F9FA;
+    --md-sys-color-surface-container-high: #F1F3F4;
+    --md-sys-color-surface-container-highest: #FFFFFF;
+    --md-sys-color-surface-variant: #F1F3F4;
+    --md-sys-color-on-surface-variant: #5F6368;
+    --md-sys-color-outline: #DADCE0;
+    --md-sys-color-error: #D93025;
+
+    /* Material Design 3 Typography */
+    --md-sys-typescale-display-large: 57px;
+    --md-sys-typescale-headline-medium: 28px;
+    --md-sys-typescale-title-medium: 16px;
+    --md-sys-typescale-body-medium: 14px;
+}
+
+/* 重置和基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* 系统容器样式 */
+.system-container {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    padding: 80px 24px 24px;
+    gap: 24px;
+    background-color: #F8F9FA;  /* 更浅的灰色背景 */
+}
+
+/* 系统标题样式 */
+.system-title {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.system-title h1 {
+    color: var(--md-sys-color-primary);
+    font-size: var(--md-sys-typescale-display-large);
+    font-weight: 400;
+    line-height: 64px;
+    margin: 0;
+}
+
+/* 左侧表单区域样式优化 */
+.form-section {
+    flex: 0 0 360px;
+    background: var(--md-sys-color-surface);
+    padding: 24px;
+    border-radius: 28px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+                0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+}
+
+/* 标题样式调整 */
+.form-section h2 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-bottom: 24px;
+    color: var(--md-sys-color-on-surface);
+}
+
+/* 输入组样式优化 */
+.input-group {
+    position: relative;
+    margin-bottom: 16px;  /* 减小间距 */
+    display: flex;
+    align-items: flex-start;  /* 改为顶部对齐 */
+    gap: 12px;  /* 减小间距 */
+}
+
+/* 标签样式调整 */
+.input-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;  /* 减小图标和文字间距 */
+    color: var(--md-sys-color-on-surface-variant);
+    font-size: 13px;  /* 减小字体 */
+    font-weight: 500;
+    line-height: 16px;
+    min-width: 90px;  /* 减小标签宽度 */
+    margin-top: 8px;  /* 添加顶部间距对齐输入框 */
+}
+
+/* 输入框容器调整 */
+.input-container {
+    flex: 1;
+    position: relative;
+    margin-top: 0;  /* 移除顶部间距 */
+}
+
+/* Material Icons 样式调整 */
+.material-icons {
+    font-size: 18px;  /* 减小图标大小 */
+}
+
+/* 输入框基础样式调整 */
+.form-input {
+    width: 100%;
+    height: 32px;
+    padding: 6px 12px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 4px;
+    background: var(--md-sys-color-surface);
+    color: #d0c6c4;  /* 修改默认文本颜色 */
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+}
+
+/* 占位符文本样式 */
+.form-input::placeholder {
+    color: #d0c6c4;  /* 修改占位符颜色 */
+    opacity: 1;
+    font-size: 14px;
+}
+
+/* 文本域样式调整 */
+textarea.form-input {
+    height: auto;
+    min-height: 80px;
+    padding: 8px 12px;
+    line-height: 1.4;
+    resize: vertical;
+}
+
+/* 文本域占位符样式 */
+textarea.form-input::placeholder {
+    line-height: 1.4;
+    color: #d0c6c4;  /* 修改文本域占位符颜色 */
+}
+
+/* 带图标的输入框 */
+.form-input.with-icon {
+    padding-left: 48px;
+}
+
+/* 输入框状态 */
+.form-input:hover {
+    background: var(--md-sys-color-surface-container-high);
+    box-shadow: inset 0 0 0 1px var(--md-sys-color-on-surface);
+}
+
+.form-input:focus {
+    background: var(--md-sys-color-surface-container-highest);
+    box-shadow: inset 0 0 0 2px var(--md-sys-color-primary);
+}
+
+/* 错误状态样式 */
+.input-group.error {
+    margin-bottom: 28px;
+}
+
+.input-group.error .material-icons {
+    color: #d93025;
+}
+
+.input-group.error .form-input {
+    border-color: #d93025;
+    padding-right: 32px;
+}
+
+.input-group.error .form-input:focus {
+    border-color: #d93025;
+    box-shadow: 0 0 0 1px #d93025;
+}
+
+/* 必填字段标记调整 */
+.input-group.required label::after {
+    font-size: 13px;
+    margin-left: 2px;
+}
+
+/* 验证消息样式调整 */
+.validation-message {
+    font-size: 12px;
+    bottom: -16px;
+    left: 90px;  /* 对应新的标签宽度 */
+}
+
+/* 日期输入框特殊样式 */
+input[type="date"].form-input {
+    padding-right: 8px;
+    text-align: left;
+}
+
+/* 文本域特殊样式 */
+textarea.form-input.with-icon {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* 颜色选择器组样式调整 */
+.color-settings {
+    background: var(--md-sys-color-surface-variant);
+    border-radius: 16px;
+    padding: 12px;
+    margin: 16px 0;
+}
+
+.color-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.color-group label {
+    font-size: 13px;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 4px;
+}
+
+.color-group input[type="color"] {
+    height: 32px;  /* 减小高度 */
+    border: none;
+    border-radius: 8px;
+    background: var(--md-sys-color-surface-container-highest);
+    box-shadow: inset 0 0 0 1px var(--md-sys-color-outline);
+}
+
+/* 禁用状态 */
+.form-input:disabled {
+    background-color: var(--field-background-disabled, #f3f3f3);
+    border-color: var(--field-border-disabled, #e0e0e0);
+    color: var(--field-text-disabled, #a19f9d);
+    cursor: not-allowed;
+}
+
+/* 生成按钮样式调整 */
+.preview-btn {
+    height: 36px;  /* 减小高度 */
+    padding: 0 24px;
+    border: none;
+    border-radius: 20px;
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3),
+                0 1px 3px 1px rgba(60,64,67,0.15);
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 16px;  /* 减顶部间距 */
+}
+
+.preview-btn:hover {
+    background: var(--md-sys-color-primary);
+    opacity: 0.92;
+    box-shadow: 0 4px 8px 3px rgba(60,64,67,.15),
+                0 1px 3px rgba(60,64,67,.3);
+}
+
+.preview-btn:active {
+    background: var(--md-sys-color-primary);
+    opacity: 0.85;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3),
+                0 1px 3px 1px rgba(0,0,0,0.15);
+    transform: translateY(1px);
+}
+
+.preview-btn:disabled {
+    background-color: #F3F2F1;
+    border-color: #F3F2F1;
+    color: #A19F9D;
+    cursor: not-allowed;
+}
+
+/* 右侧预览区域样式 */
+.preview-section {
+    flex: 1;
+    background: white;
+    padding: 80px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 1070px;
+}
+
+/* 添加外层包装器样式 */
+.certificate-wrapper {
+    position: relative;
+    padding: 18px;
+    border: 10px solid #FF6634;
+    background-color: white;
+    width: 950px;
+}
+
+/* 移除预览区域的最外层边框 */
+.certificate-wrapper::before {
+    display: none;
+}
+
+/* 更新证书样式 */
+.certificate {
+    background-color: white;
+    border: 2px solid #FF6634;
+    padding: 20px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* 移除前伪元素样式 */
+.certificate::before {
+    display: none;
+}
+
+.certificate-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    text-align: left;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.logo img {
+    height: 40px;  /* 调整 SVG 图标大小 */
+    width: auto;
+    display: block;
+    filter: brightness(0.4);  /* 调整图标颜色深浅 */
+}
+
+.cn-title {
+    color: #FF6634;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.certificate-content {
+    text-align: center;
+    margin: 65px 0;
+}
+
+.student-name {
+    font-size: 24px;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    color: #202124;  /* 恢复正常文本颜色 */
+}
+
+.student-name::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+}
+
+.completion-text, .award-text {
+    font-size: 18px;
+    color: #DAA520;  /* 恢复金色 */
+    margin-bottom: 20px;
+}
+
+.course-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #202124;  /* 恢复正常文本颜色 */
+}
+
+.award-text {
+    margin-top: 40px;  /* 只保留上边距 */
+}
+
+.certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    padding: 0 20px;
+}
+
+.issue-date, .certificate-number {
+    font-size: 14px;
+    color: #666;  /* 恢复原来的颜色 */
+}
+
+.institution {
+    text-align: right;
+    color: #202124;  /* 恢复正常文本颜色 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .certificate {
+        padding: 20px;
+    }
+
+    .signature-section {
+        margin: 20px;
+    }
+
+    .certificate-title {
+        font-size: 20px;
+    }
+}
+
+/* 添加生成时的按钮状态 */
+.preview-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* 添加文本区域样式 */
+textarea.form-input {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+/* 颜色设置区域样式 */
+.color-settings {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.color-group {
+    flex: 1;
+}
+
+.color-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.color-group input[type="color"] {
+    width: 100%;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.color-group input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-group input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 3px;
+}
+
+/* 确保标题和证书标题样式一致 */
+.system-title h1,
+.cn-title {
+    color: #FF6634;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* 占位符文本样式 */
+.form-input::placeholder {
+    color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+/* 按钮组样式 */
+.button-group {
+    display: flex;
+    flex-direction: column;  /* 改为纵向排列 */
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* 通用按钮样式 */
+.preview-btn, .record-btn {
+    width: 100%;  /* 改为占满宽度 */
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+/* 生成证书按钮样式 */
+.preview-btn {
+    background: #4285F4;  /* Google Blue */
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0 1px 2px rgba(60,64,67,0.3), 
+                0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+.preview-btn:hover {
+    background: #1A73E8;
+    box-shadow: 0 4px 8px rgba(60,64,67,0.3);
+}
+
+.preview-btn:active {
+    background: #1557B0;
+    box-shadow: 0 1px 2px rgba(60,64,67,0.3);
+}
+
+/* 生成记录按钮样式 */
+.record-btn {
+    background: #F8F9FA;
+    color: #4285F4;
+    border: 1px solid #DADCE0;
+}
+
+.record-btn:hover {
+    background: #F1F3F4;
+    border-color: #4285F4;
+}
+
+.record-btn:active {
+    background: #E8F0FE;
+}
+
+/* 按钮图标样式 */
+.preview-btn .material-icons,
+.record-btn .material-icons {
+    font-size: 18px;
+}
+
+/* 按钮禁用状态 */
+.preview-btn:disabled {
+    background: #F1F3F4;
+    color: #9AA0A6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.record-btn:disabled {
+    background: #F1F3F4;
+    color: #9AA0A6;
+    border-color: #DADCE0;
+    cursor: not-allowed;
+}
+
+/* 证书预览区域的默认文本样式 */
+.certificate-number .number {
+    color: #202124;  /* 修改证书编号颜色 */
+}
+
+.institution .cn-text {
+    color: #202124;  /* 修改医院名称颜色 */
+}
+
+/* 证书底部信息的文本颜色 */
+.certificate-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    padding: 0 20px;
+}
+
+.issue-date, .certificate-number {
+    font-size: 14px;
+    color: #202124;  /* 修改为统一的颜色 */
+}
+
+.institution {
+    text-align: right;
+    color: #202124;  /* 保持一致的颜色 */
+}
+
+/* 修改输入框默认值和占位符样式 */
+.form-input {
+    color: transparent !important;  /* 修改为透明色 */
+}
+
+.form-input::placeholder {
+    color: #5F6368 !important;  /* 修改占位符颜色为灰色 */
+    opacity: 0.7;
+}
+
+/* 当输入框获得焦点或有用户输入时的文本颜色 */
+.form-input:focus,
+.form-input:not(:placeholder-shown) {
+    color: var(--md-sys-color-on-surface) !important;  /* 输入状态显示正常颜色 */
+}
+
+/* 移动端查询按钮样式 */
+.mobile-query-btn {
+    width: 100%;  /* 与其他按钮保持一致 */
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 100px;
+    background: #F8F9FA;
+    color: #4285F4;
+    border: 1px solid #DADCE0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.mobile-query-btn:hover {
+    background: #F1F3F4;
+    border-color: #4285F4;
+}
+
+.mobile-query-btn:active {
+    background: #E8F0FE;
+}
+
+.mobile-query-btn .material-icons {
+    font-size: 18px;
+}
+
+/* 移动端查询区域样式 */
+.mobile-query-section {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--md-sys-color-outline);
+}
+
+.mobile-query-section h3 {
+    font-size: 16px;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 16px;
+}
+
+.mobile-query-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mobile-query-input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 16px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 100px;
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    font-size: 14px;
+}
+
+.mobile-query-input::placeholder {
+    color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.7;
+}
+
+.mobile-query-btn {
+    width: 100%;
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 100px;
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobile-query-btn:hover {
+    background: #E3F2FD;
+}
+
+.mobile-query-btn:active {
+    background: #BBDEFB;
+}
+
+/* 移动端响应式样式 */
+@media (max-width: 768px) {
+    .system-container {
+        flex-direction: column;
+        padding: 24px 16px;
+    }
+
+    .form-section {
+        flex: none;
+        width: 100%;
+    }
+
+    .preview-section {
+        min-width: auto;
+        padding: 16px;
+    }
+
+    .certificate-wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .certificate {
+        padding: 20px;
+    }
+
+    .mobile-query-section {
+        margin-top: 16px;
+        padding-top: 16px;
+    }
+}
+
+/* Logo 上传相关样式 */
+.logo-preview {
+    margin-top: 8px;
+    position: relative;
+    display: inline-block;
+}
+
+.logo-preview img {
+    max-width: 100px;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+.remove-logo {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #d93025;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-logo:hover {
+    background: #b3261e;
+}
+
+/* 修改证书中 logo 容器的样式 */
+.certificate .logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.certificate .logo img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* 字体大小控制按钮样式 */
+.font-size-control {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 8px;
+}
+
+.font-size-btn {
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: 4px;
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.font-size-btn:hover {
+    background: var(--md-sys-color-surface-variant);
+    border-color: var(--md-sys-color-on-surface-variant);
+}
+
+.font-size-btn:active {
+    background: var(--md-sys-color-surface-container-high);
+}
+
+.font-size-btn .material-icons {
+    font-size: 20px;
+}
+
+/* 调整输入容器布局 */
+.input-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.input-container .form-input {
+    flex: 1;
+} 

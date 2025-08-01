@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书生成记录</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="record.css">
+</head>
+<body>
+    <div class="record-container">
+        <div class="record-header">
+            <h1>证书生成记录</h1>
+            <button class="close-btn">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" 
+                       class="search-input" 
+                       placeholder="搜索姓名、证书编号或课程内容..."
+                       id="searchInput">
+                <button class="search-btn">
+                    <span class="material-icons">search</span>
+                    搜索
+                </button>
+                <button class="download-btn">
+                    <span class="material-icons">download</span>
+                    下载搜索结果
+                </button>
+            </div>
+        </div>
+
+        <div class="record-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="40">
+                            <input type="checkbox" id="selectAll">
+                        </th>
+                        <th width="60">序号</th>
+                        <th width="100">姓名</th>
+                        <th width="120">证书编号</th>
+                        <th width="120">签发日期</th>
+                        <th>课程名称</th>
+                    </tr>
+                </thead>
+                <tbody id="recordList">
+                    <!-- 记录将通过 JavaScript 动态添加 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="record.js"></script>
+</body>
+</html> 
