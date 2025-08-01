@@ -18,14 +18,35 @@ document.addEventListener('DOMContentLoaded', function() {
         recordList.innerHTML = '';
         records.forEach((record, index) => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td><input type="checkbox" class="record-checkbox" data-id="${record.id}"></td>
-                <td>${index + 1}</td>
-                <td>${record.name}</td>
-                <td>${record.id}</td>
-                <td>${record.issueDate}</td>
-                <td>${record.courseName}</td>
-            `;
+
+            const cell1 = document.createElement('td');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'record-checkbox';
+            checkbox.dataset.id = record.id;
+            cell1.appendChild(checkbox);
+            row.appendChild(cell1);
+
+            const cell2 = document.createElement('td');
+            cell2.textContent = index + 1;
+            row.appendChild(cell2);
+
+            const cell3 = document.createElement('td');
+            cell3.textContent = record.name;
+            row.appendChild(cell3);
+
+            const cell4 = document.createElement('td');
+            cell4.textContent = record.id;
+            row.appendChild(cell4);
+
+            const cell5 = document.createElement('td');
+            cell5.textContent = record.issueDate;
+            row.appendChild(cell5);
+
+            const cell6 = document.createElement('td');
+            cell6.textContent = record.courseName;
+            row.appendChild(cell6);
+
             recordList.appendChild(row);
         });
     }
