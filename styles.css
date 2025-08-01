@@ -963,54 +963,188 @@ textarea.form-input {
     border-color: #FF6634;
 }
 
-/* 现代模板 */
+/* 现代模板 - 中式正式证书设计 */
 .template-modern {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: #F8F8F8;
+    color: #000000;
     text-align: center;
     position: relative;
+    border: 20px solid #00A99D;
+    padding: 30px;
 }
 
+/* 装饰性边框和背景纹理 */
 .template-modern::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 3px double #DAA520;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path d="M50 20 Q60 30 50 40 Q40 30 50 20 M20 50 Q30 60 40 50 Q30 40 20 50 M80 50 Q90 60 80 70 Q70 60 80 50 M50 80 Q60 90 50 100 Q40 90 50 80" fill="%23DAA520"/></svg>') repeat;
+    pointer-events: none;
+}
+
+/* 角落装饰 */
+.template-modern::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="30" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="70" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M10 10 Q30 5 50 10 Q45 30 50 50 Q30 45 10 50 Q15 30 10 10" fill="none" stroke="%2300A99D" stroke-width="2" opacity="0.6"/></svg>') top left no-repeat,
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M50 10 Q30 5 10 10 Q15 30 10 50 Q30 45 50 50 Q45 30 50 10" fill="none" stroke="%2300A99D" stroke-width="2" opacity="0.6"/></svg>') top right no-repeat,
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M10 50 Q30 55 50 50 Q45 30 50 10 Q30 15 10 10 Q15 30 10 50" fill="none" stroke="%2300A99D" stroke-width="2" opacity="0.6"/></svg>') bottom left no-repeat,
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><path d="M50 50 Q30 55 10 50 Q15 30 10 10 Q30 15 50 10 Q45 30 50 50" fill="none" stroke="%2300A99D" stroke-width="2" opacity="0.6"/></svg>') bottom right no-repeat;
+    background-size: 60px 60px;
     pointer-events: none;
 }
 
 .template-modern .certificate-header {
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+    border-bottom: none;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* Logo徽章样式 */
+.template-modern .logo {
+    margin: 0 auto 15px;
+    position: relative;
+}
+
+.template-modern .logo::before {
+    content: '北京老年医院';
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: normal;
+    color: #00A99D;
+    white-space: nowrap;
+}
+
+.template-modern .logo::after {
+    content: '1949';
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: #00A99D;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 装饰性横线 */
+.template-modern .certificate-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #DAA520 20%, #DAA520 80%, transparent 100%);
+    transform: translateY(-50%);
 }
 
 .template-modern .cn-title {
-    color: white;
-    font-size: 28px;
-    font-weight: 300;
-    letter-spacing: 2px;
+    color: #000000;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin: 20px 0;
+    text-shadow: none;
 }
 
 .template-modern .student-name {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 25px 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: "SimSun", "宋体", serif;
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000;
+    margin: 30px 0;
+    text-shadow: none;
+    border-bottom: 2px solid #DAA520;
+    padding-bottom: 5px;
+    display: inline-block;
 }
 
-.template-modern .completion-text,
-.template-modern .course-name,
+.template-modern .completion-text {
+    color: #000000;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 20px 0;
+}
+
+.template-modern .course-name {
+    color: #00A99D;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
 .template-modern .award-text {
-    color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+.template-modern .certificate-footer {
+    border-top: 2px solid #DAA520;
+    padding-top: 20px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.template-modern .issue-date,
+.template-modern .certificate-number {
+    color: #000000;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 14px;
+}
+
+.template-modern .institution {
+    color: #000000;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 14px;
+    text-align: right;
+}
+
+.template-modern .institution .cn-text::before {
+    content: '主办单位：';
 }
 
 .template-modern-thumb {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(45deg, #F8F8F8 0%, #E8F8F6 100%);
+    border: 2px solid #00A99D;
+    color: #000000;
+    position: relative;
+}
+
+.template-modern-thumb::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px solid #DAA520;
 }
 
 /* 优雅模板 */
