@@ -1,199 +1,199 @@
-# 电子证书管理系统
+# Electronic Certificate Management System
 
 <div align="center">
-  <img src="images/logo.png" alt="系统LOGO" width="120" height="120">
+  <img src="images/logo.png" alt="System Logo" width="120" height="120">
   
   [![License](https://img.shields.io/badge/license-ISC-blue.svg)](LICENSE)
   [![Node.js Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)](https://nodejs.org/)
   [![Express](https://img.shields.io/badge/express-4.21.1-orange.svg)](https://expressjs.com/)
 </div>
 
-## 📋 项目简介
+## 📋 Project Overview
 
-电子证书管理系统是一个现代化的证书制作和管理平台，为教育机构、培训中心等提供专业的电子证书解决方案。系统支持多种证书模板样式，证书上的所有元素都可以自定义编辑，极大地扩展了适用范围。
+The Electronic Certificate Management System is a modern certificate creation and management platform that provides professional electronic certificate solutions for educational institutions, training centers, and other organizations. The system supports multiple certificate template styles with fully customizable elements, greatly expanding its applicability.
 
-## ✨ 主要特性
+## ✨ Key Features
 
-### 🎨 证书设计
-- **多种模板样式**：提供多种专业证书模板供选择
-- **可视化编辑**：所见即所得的证书预览效果
-- **自定义元素**：支持自定义证书名称、课程内容、机构信息等
-- **灵活排版**：支持字体大小调整和边框颜色自定义
-- **高清导出**：基于HTML5 Canvas技术生成高质量证书图片
+### 🎨 Certificate Design
+- **Multiple Template Styles**: Various professional certificate templates to choose from
+- **Visual Editing**: WYSIWYG certificate preview functionality
+- **Customizable Elements**: Support for customizing certificate titles, course content, institution information, etc.
+- **Flexible Layout**: Font size adjustment and border color customization
+- **High-Quality Export**: Generate high-quality certificate images using HTML5 Canvas technology
 
-### 📊 批量管理
-- **批量生成**：支持一次性为多个学员生成证书
-- **智能编号**：自动生成唯一证书编号
-- **批量下载**：支持打包下载所有生成的证书
+### 📊 Batch Management
+- **Batch Generation**: Generate certificates for multiple students at once
+- **Smart Numbering**: Automatically generate unique certificate numbers
+- **Batch Download**: Support for packaging and downloading all generated certificates
 
-### 🔍 记录管理
-- **生成记录**：完整记录所有证书生成历史
-- **智能搜索**：支持按姓名、证书编号、课程内容等多维度搜索
-- **数据导出**：支持搜索结果的批量下载
+### 🔍 Record Management
+- **Generation Records**: Complete tracking of all certificate generation history
+- **Smart Search**: Multi-dimensional search by name, certificate number, course content, etc.
+- **Data Export**: Batch download support for search results
 
-### 📱 移动端支持
-- **移动查询**：专门的移动端证书查询界面
-- **响应式设计**：完美适配各种屏幕尺寸
-- **便捷访问**：随时随地查询证书信息
+### 📱 Mobile Support
+- **Mobile Query**: Dedicated mobile interface for certificate queries
+- **Responsive Design**: Perfect adaptation to various screen sizes
+- **Convenient Access**: Query certificate information anytime, anywhere
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 环境要求
+### System Requirements
 - Node.js >= 14.0.0
-- npm 或 yarn 包管理器
-- 现代浏览器（支持ES6+）
+- npm or yarn package manager
+- Modern browser (ES6+ support)
 
-### 安装步骤
+### Installation Steps
 
-1. **克隆项目**
+1. **Clone Repository**
    ```bash
    git clone <repository-url>
    cd CertificateSystem
    ```
 
-2. **安装依赖**
+2. **Install Dependencies**
    ```bash
    npm install
    ```
 
-3. **启动服务**
+3. **Start Service**
    ```bash
    npm start
    ```
 
-4. **访问系统**
-   在浏览器中打开 `http://localhost:3000`
+4. **Access System**
+   Open `http://localhost:3000` in your browser
 
-## 📚 使用指南
+## 📚 User Guide
 
-### 证书制作流程
+### Certificate Creation Process
 
-1. **信息录入**
-   - 在左侧表单区域填写证书信息
-   - 支持批量输入学员姓名（每行一个）
-   - 填写证书名称、课程名称等基本信息
+1. **Information Input**
+   - Fill in certificate information in the left form area
+   - Support batch input of student names (one per line)
+   - Enter basic information such as certificate title, course name, etc.
 
-2. **预览调整**
-   - 实时预览证书效果
-   - 调整字体大小和边框颜色
-   - 确认证书内容无误
+2. **Preview & Adjustment**
+   - Real-time certificate preview
+   - Adjust font size and border colors
+   - Confirm certificate content accuracy
 
-3. **批量生成**
-   - 点击"生成证书"按钮
-   - 系统自动为每个学员生成独立证书
-   - 证书将保存到 `images/Storage/` 目录
+3. **Batch Generation**
+   - Click the "Generate Certificate" button
+   - System automatically generates individual certificates for each student
+   - Certificates are saved to `images/Storage/` directory
 
-4. **下载管理**
-   - 支持单个证书下载
-   - 支持批量打包下载
-   - 可通过记录管理界面统一管理
+4. **Download Management**
+   - Support individual certificate downloads
+   - Support batch package downloads
+   - Unified management through record management interface
 
-### 页面功能
+### Page Functions
 
-| 页面 | 功能描述 | 访问路径 |
-|------|----------|----------|
-| 主页面 | 证书制作和编辑 | `/certificate.html` |
-| 记录管理 | 查看和管理生成记录 | `/record.html` |
-| 移动查询 | 移动端证书查询 | `/mobile-query.html` |
+| Page | Function Description | Access Path |
+|------|---------------------|-------------|
+| Main Page | Certificate creation and editing | `/certificate.html` |
+| Record Management | View and manage generation records | `/record.html` |
+| Mobile Query | Mobile certificate query | `/mobile-query.html` |
 
-## 🗂️ 项目结构
+## 🗂️ Project Structure
 
 ```
 CertificateSystem/
-├── certificate.html          # 主要证书编辑页面
-├── record.html              # 记录管理页面
-├── mobile-query.html        # 移动端查询页面
-├── script.js               # 主要业务逻辑
-├── record.js               # 记录管理脚本
-├── mobile-query.js         # 移动端查询脚本
-├── server.js               # Express服务器
-├── styles.css              # 主要样式表
-├── record.css              # 记录页面样式
-├── package.json            # 项目配置
-├── images/                 # 图片资源目录
-│   ├── logo.png           # 系统LOGO
-│   └── Storage/           # 证书存储目录
-└── README.md              # 项目文档
+├── certificate.html          # Main certificate editing page
+├── record.html              # Record management page
+├── mobile-query.html        # Mobile query page
+├── script.js               # Main business logic
+├── record.js               # Record management scripts
+├── mobile-query.js         # Mobile query scripts
+├── server.js               # Express server
+├── styles.css              # Main stylesheet
+├── record.css              # Record page styles
+├── package.json            # Project configuration
+├── images/                 # Image resources directory
+│   ├── logo.png           # System logo
+│   └── Storage/           # Certificate storage directory
+└── README.md              # Project documentation
 ```
 
-## 🔧 配置说明
+## 🔧 Configuration
 
-### 服务器配置
-系统使用Express框架提供Web服务，默认端口为3000。可以通过修改 `server.js` 文件调整配置：
+### Server Configuration
+The system uses Express framework for web services, with default port 3000. Configuration can be adjusted by modifying the `server.js` file:
 
 ```javascript
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`服务器运行在端口 ${port}`);
+    console.log(`Server running on port ${port}`);
 });
 ```
 
-### 证书模板自定义
-证书样式通过CSS定制，主要样式文件为 `styles.css`。可以修改以下类来自定义证书外观：
+### Certificate Template Customization
+Certificate styles are customized through CSS, with the main stylesheet being `styles.css`. You can modify the following classes to customize certificate appearance:
 
-- `.certificate`: 证书主容器
-- `.student-name`: 学员姓名样式
-- `.cn-title`: 证书标题样式
-- `.course-name`: 课程名称样式
+- `.certificate`: Main certificate container
+- `.student-name`: Student name styling
+- `.cn-title`: Certificate title styling
+- `.course-name`: Course name styling
 
-## 🛠️ 技术栈
+## 🛠️ Technology Stack
 
-- **前端技术**
+- **Frontend Technologies**
   - HTML5 / CSS3
   - Vanilla JavaScript (ES6+)
   - Material Icons
-  - HTML2Canvas (证书生成)
+  - HTML2Canvas (Certificate Generation)
 
-- **后端技术**
+- **Backend Technologies**
   - Node.js
   - Express.js
 
-- **存储方案**
-  - 本地文件系统
-  - LocalStorage (用户设置)
+- **Storage Solutions**
+  - Local File System
+  - LocalStorage (User Settings)
 
-## 📋 待开发功能
+## 📋 Upcoming Features
 
-- [ ] 数据库集成（MySQL/MongoDB）
-- [ ] 用户权限管理
-- [ ] 更多证书模板
-- [ ] 证书数字签名
-- [ ] API接口开发
-- [ ] 单元测试覆盖
+- [ ] Database Integration (MySQL/MongoDB)
+- [ ] User Permission Management
+- [ ] More Certificate Templates
+- [ ] Digital Certificate Signatures
+- [ ] API Development
+- [ ] Unit Test Coverage
 
-## 🤝 贡献指南
+## 🤝 Contributing
 
-欢迎提交Issue和Pull Request来改进项目！
+Welcome to submit Issues and Pull Requests to improve the project!
 
-1. Fork 项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 更新日志
+## 📝 Changelog
 
 ### v1.0.0 (2025-01-xx)
-- 🎉 项目初始版本发布
-- ✅ 基础证书制作功能
-- ✅ 批量生成和下载
-- ✅ 记录管理系统
-- ✅ 移动端支持
+- 🎉 Initial project release
+- ✅ Basic certificate creation functionality
+- ✅ Batch generation and download
+- ✅ Record management system
+- ✅ Mobile support
 
-## 📞 联系方式
+## 📞 Contact
 
-如有问题或建议，请通过以下方式联系：
+For questions or suggestions, please contact us through:
 
-- 项目Issues: [GitHub Issues](https://github.com/your-repo/issues)
-- 邮箱: your-email@example.com
+- Project Issues: [GitHub Issues](https://github.com/your-repo/issues)
+- Email: your-email@example.com
 
-## 📄 许可证
+## 📄 License
 
-本项目采用 ISC 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
-  <p>💝 如果这个项目对您有帮助，请考虑给个 Star ⭐</p>
+  <p>💝 If this project helps you, please consider giving it a Star ⭐</p>
   <p>Made with ❤️ by Certificate System Team</p>
 </div>
