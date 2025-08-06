@@ -74,49 +74,76 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadBtn.disabled = filteredRecords.length === 0;
     }
 
-    // 下载选中的记录
+    // 下载选中的记录（已更新为生成图片）
     async function downloadSelectedRecords() {
+        const downloadBtnOriginalText = downloadBtn.innerHTML;
         try {
             const selectedCheckboxes = document.querySelectorAll('.record-checkbox:checked');
             if (selectedCheckboxes.length === 0) {
-                alert('请选择要下载的证书');
+                alert('请选择要下载的证书记录');
                 return;
             }
+
+            downloadBtn.disabled = true;
+            downloadBtn.innerHTML = '<span class="material-icons">hourglass_top</span> 处理中...';
 
             const selectedIds = Array.from(selectedCheckboxes).map(cb => cb.dataset.id);
             const allRecords = JSON.parse(localStorage.getItem('certificateRecords') || '[]');
             const selectedRecords = allRecords.filter(record => selectedIds.includes(record.id));
 
-            // 创建 ZIP 文件
-            const zip = new JSZip();
+            // 如果只选择一个，直接下载图片
+            if (selectedRecords.length === 1) {
+                const record = selectedRecords[0];
+                const blob = await generateCertificateImage(record);
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `${record.name}-${record.id}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                alert('证书已下载！');
+            } else {
+                // 如果选择多个，打包成 ZIP 下载
+                const zip = new JSZip();
+                const certificatesFolder = zip.folder("certificates");
 
-            // 为每个选中的记录生成证书
-            for (const record of selectedRecords) {
-                // 使用记录信息生成证书内容
-                const certificateContent = `
-姓名：${record.name}
-证书编号：${record.id}
-课程名称：${record.courseName}
-签发日期：${record.issueDate}
-                `;
-                
-                // 添加到 ZIP 文件
-                zip.file(`证书_${record.name}_${record.id}.txt`, certificateContent);
+                let processedCount = 0;
+                for (const record of selectedRecords) {
+                    try {
+                        const blob = await generateCertificateImage(record);
+                        const fileName = `${record.name}-${record.id}.png`;
+                        certificatesFolder.file(fileName, blob);
+                        processedCount++;
+                    } catch (error) {
+                        console.error(`生成 ${record.name} 的证书失败:`, error);
+                    }
+                }
+
+                if (processedCount > 0) {
+                    downloadBtn.innerHTML = '<span class="material-icons">archive</span> 打包中...';
+                    const content = await zip.generateAsync({ type: "blob" });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(content);
+                    link.download = `证书批量导出-${new Date().getTime()}.zip`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(link.href);
+                    alert(`批量下载完成！\n成功生成 ${processedCount} 份证书。`);
+                } else {
+                    alert('所有选中的证书都生成失败，请重试。');
+                }
             }
-
-            // 生成并下载 ZIP 文件
-            const content = await zip.generateAsync({type: 'blob'});
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(content);
-            link.download = `证书_${new Date().getTime()}.zip`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(link.href);
 
         } catch (error) {
             console.error('下载证书时出错:', error);
             alert('下载证书失败，请重试: ' + error.message);
+        } finally {
+            // 恢复按钮状态
+            downloadBtn.disabled = false;
+            downloadBtn.innerHTML = downloadBtnOriginalText;
         }
     }
 
